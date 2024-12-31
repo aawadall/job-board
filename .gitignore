@@ -1,3 +1,6 @@
 # ignore npm related files
 **/node_modules
 **/package-lock.json
+
+# ignore terraform secrets
+**/*.tfvars

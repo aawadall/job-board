@@ -4,3 +4,7 @@
 
 # ignore terraform secrets
 **/*.tfvars
+**/*.tfstate
+**/*.tfstate.backup
+**/.terraform.lock.hcl
+**/.terraform/

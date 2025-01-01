@@ -12,23 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3  # Fetch the latest code
-
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
-
-      - name: Deploy application
-        run: |
-          ssh -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} << 'EOF'
-          if [ ! -d "/path/to/your/app" ]; then
-            git clone https://github.com/<your-username>/job-board.git /path/to/your/app
-          fi
-          cd /path/to/your/app
-          git reset --hard origin/main
-          git pull
-          npm install
-          pm2 restart all || pm2 start src/server.js --name "job-board"
-          EOF
+      - name: GitHub Action for DigitalOcean - doctl
+        # You may pin to the exact commit or the version.
+        # uses: digitalocean/action-doctl@135ac0aa0eed4437d547c6f12c364d3006b42824
+        uses: digitalocean/action-doctl@v2.5.1
+        with:
+          # DigitalOcean API Token
+          token: ${{secrets.DO_SSH_KEY}} # optional, default is 
+                

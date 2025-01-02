@@ -8,3 +8,7 @@
 **/*.tfstate.backup
 **/.terraform.lock.hcl
 **/.terraform/
+
+# ignore .env
+**/.env
+.env

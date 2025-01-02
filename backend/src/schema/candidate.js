@@ -22,6 +22,17 @@ const candidateSchema = gql`
         phone: String!
         email: String!
     }
+    
+    input NameInput {
+        first: String!
+        middle: String
+        last: String!
+    }
+
+    input ContactsInput {
+        phone: String!
+        email: String!
+    }
 
     type Query {
         candidates: [Candidate]
@@ -39,6 +50,7 @@ const candidateSchema = gql`
             notes: String
         ): Candidate
     }
+
 `;
 
 module.exports = candidateSchema;

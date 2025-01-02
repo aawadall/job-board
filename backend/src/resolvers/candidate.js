@@ -15,7 +15,22 @@ const candidateResolvers = {
     },
     Mutation: {
         createCandidate: async (_, { name, contacts, location, skills, experience, education, notes }) => {
-            const candidate = new Candidate({ name, contacts, location, skills, experience, education, notes });
+            const candidate = new Candidate({ 
+                name: {
+                    first: name.first,
+                    middle: name.middle,
+                    last: name.last
+                },
+                contacts: {
+                    phone: contacts.phone,
+                    email: contacts.email
+                },
+                location, 
+                skills, 
+                experience, 
+                education, 
+                notes 
+            });
             await redis.del('candidates'); // Invalidate cache
             return await candidate.save();
         },

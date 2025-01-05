@@ -1,7 +1,3 @@
-output "droplet_ip" {
-  value = digitalocean_droplet.job_board_backend.ipv4_address
-}
-
 output "mongo_connection" {
   value = digitalocean_database_cluster.mongo.uri
   sensitive = true
@@ -10,4 +6,8 @@ output "mongo_connection" {
 output "redis_connection" {
   value = digitalocean_database_cluster.redis.uri
     sensitive = true
+}
+
+output "app_url" {
+  value = digitalocean_app.backend.default_ingress
 }

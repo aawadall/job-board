@@ -13,13 +13,13 @@ resource "digitalocean_app" "backend" {
       env {
         key = "MONGO_URI"
         value = digitalocean_database_cluster.mongo.uri
-        scope = "RUN_AND_BUILD"
+        scope = "RUN_AND_BUILD_TIME"
       }
 
       env {
         key = "REDIS_URI"
         value = digitalocean_database_cluster.redis.uri
-        scope = "RUN_AND_BUILD"
+        scope = "RUN_AND_BUILD_TIME"
       }
 
       http_port = 4000
@@ -28,8 +28,4 @@ resource "digitalocean_app" "backend" {
     }
   }
 
-}
-
-output "app_url" {
-    value = digitalocean_app.backend.live_url
 }
